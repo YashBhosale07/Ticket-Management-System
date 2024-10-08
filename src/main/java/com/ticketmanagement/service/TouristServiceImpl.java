@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ticketmanagement.dao.TouristRepo;
-import com.ticketmanagement.exception.TouristNotFoundException;
+import com.ticketmanagement.exceptionhandling.TouristNotFoundException;
 import com.ticketmanagement.model.Tourist;
 
 @Service
@@ -40,6 +40,15 @@ public class TouristServiceImpl implements IToursit {
 	public Tourist findByName(String name) {
 		return repo.findByName(name)
 				.orElseThrow(()->new TouristNotFoundException("Toursit not found with name: "+name));
+	}
+
+	@Override
+	public String updateTouristByDetails(Tourist t) {
+		Tourist tourist = repo.findById(t.getId())
+	            .orElseThrow(() -> new TouristNotFoundException("Tourist not found with id: " + t.getId()));
+	    repo.save(t);
+	    
+	    return "Data Updated for Tourist with id: " + t.getId();
 	}
 
 	

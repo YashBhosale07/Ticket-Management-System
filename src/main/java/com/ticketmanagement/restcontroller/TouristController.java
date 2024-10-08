@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -56,6 +57,13 @@ public class TouristController {
 	public ResponseEntity<Tourist>findTouristByName(@PathVariable String name){
 		Tourist t=service.findByName(name);
 		return new ResponseEntity<Tourist>(t,HttpStatus.OK);
+	}
+	
+	@PutMapping("/modify")
+	public ResponseEntity<String>modifyTourist(@RequestBody Tourist t){
+		String msg=service.updateTouristByDetails(t);
+		return new ResponseEntity<String>(msg,HttpStatus.OK);
+		
 	}
 	
 }
