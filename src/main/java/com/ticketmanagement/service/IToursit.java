@@ -12,5 +12,6 @@ public interface IToursit {
 	public Optional<Tourist> findById(Long id);
 	public Tourist findByName(String name);
 	public String updateTouristByDetails(Tourist t);
+	public String deleteToursitById(Long id);
 
 }

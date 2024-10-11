@@ -51,6 +51,13 @@ public class TouristServiceImpl implements IToursit {
 	    return "Data Updated for Tourist with id: " + t.getId();
 	}
 
+	@Override
+	public String deleteToursitById(Long id) {
+		Tourist t=repo.findById(id).orElseThrow(()->new TouristNotFoundException("Tourist not found with id: "+id));
+		repo.deleteById(id);
+		return "Toursit deleted ";
+	}
+
 	
 
 }
